@@ -8,6 +8,7 @@ module.exports = {
     get: './get.js',
     list: './list.js',
     update: './update.js',
+    delete: './delete.js',
   },
   target: 'node',
   // because 'aws-sdk' is not compatible with webpack,
