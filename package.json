@@ -1,0 +1,26 @@
+{
+  "name": "ServerlessStackApi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnomalyInnovations/serverless-stack-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnomalyInnovations/serverless-stack-api/issues"
+  },
+  "homepage": "https://github.com/AnomalyInnovations/serverless-stack-api#readme",
+  "devDependencies": {
+    "aws-sdk": "^2.22.0"
+  },
+  "dependencies": {
+    "uuid": "^3.0.1"
+  }
+}
