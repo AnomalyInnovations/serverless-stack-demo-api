@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnomalyInnovations/serverless-stack-api.git"
+    "url": "git+https://github.com/AnomalyInnovations/serverless-stack-demo-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AnomalyInnovations/serverless-stack-api/issues"
+    "url": "https://github.com/AnomalyInnovations/serverless-stack-demo-api/issues"
   },
-  "homepage": "https://github.com/AnomalyInnovations/serverless-stack-api#readme",
+  "homepage": "https://github.com/AnomalyInnovations/serverless-stack-demo-api#readme",
   "devDependencies": {
     "aws-sdk": "^2.22.0",
     "babel-core": "^6.23.1",
