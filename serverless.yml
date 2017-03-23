@@ -42,4 +42,4 @@ functions:
           method: post
           cors: true
           authorizer:
-            arn: YOUR_USER_POOL_ARN
+            arn: arn:aws:cognito-idp:us-east-1:232771856781:userpool/us-east-1_YEhdMFvix
