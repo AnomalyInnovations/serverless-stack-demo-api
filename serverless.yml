@@ -69,3 +69,16 @@ functions:
           cors: true
           authorizer:
             arn: arn:aws:cognito-idp:us-east-1:232771856781:userpool/us-east-1_YEhdMFvix
+
+  update:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: update.main
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-east-1:232771856781:userpool/us-east-1_YEhdMFvix
