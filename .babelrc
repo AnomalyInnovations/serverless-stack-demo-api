@@ -1,4 +1,0 @@
-{
-  "plugins": ["transform-runtime"],
-  "presets": ["react-app"]
-}
