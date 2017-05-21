@@ -1,4 +1,4 @@
 {
   "plugins": ["transform-runtime"],
-  "presets": ["react-app"]
+  "presets": ["es2015", "stage-3"]
 }
