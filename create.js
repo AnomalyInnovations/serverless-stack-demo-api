@@ -7,7 +7,7 @@ export async function main(event, context, callback) {
   const params = {
     TableName: 'notes',
     Item: {
-      userId: event.requestContext.authorizer.claims.sub,
+      userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),
       content: data.content,
       attachment: data.attachment,

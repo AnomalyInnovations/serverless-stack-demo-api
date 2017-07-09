@@ -32,8 +32,7 @@ functions:
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
-  # - authorizer: authenticate the api via Cognito User Pool. Update the 'arn'
-  #     with your own User Pool ARN
+  # - authorizer: authenticate using the AWS IAM role
   create:
     handler: create.main
     events:
@@ -41,5 +40,4 @@ functions:
           path: notes
           method: post
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-east-1:232771856781:userpool/us-east-1_YEhdMFvix
+          authorizer: aws_iam
