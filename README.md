@@ -24,10 +24,11 @@ To use this repo locally you need to have the [Serverless framework](https://ser
 $ npm install serverless -g
 ```
 
-Clone this repo.
+Clone this repo and install the NPM packages.
 
 ``` bash
 $ git clone https://github.com/AnomalyInnovations/serverless-stack-demo-api
+$ npm install
 ```
 
 Run a single API on local.
