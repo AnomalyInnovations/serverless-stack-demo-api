@@ -1,8 +1,10 @@
 service: notes-app-api
 
+# Use serverless-webpack plugin to transpile ES6/ES7
 plugins:
   - serverless-webpack
 
+# Enable auto-packing of external modules
 custom:
   webpackIncludeModules: true
 
