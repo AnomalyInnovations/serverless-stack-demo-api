@@ -34,7 +34,7 @@ $ npm install
 Run a single API on local.
 
 ``` bash
-$ serverless webpack invoke --function list --path event.json
+$ serverless invoke local --function list --path event.json
 ```
 
 Where, `event.json` contains the request event info and looks something like this.
