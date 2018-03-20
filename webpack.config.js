@@ -7,6 +7,7 @@ module.exports = {
   // Since 'aws-sdk' is not compatible with webpack,
   // we exclude all node dependencies
   externals: [nodeExternals()],
+  mode: slsw.lib.webpack.isLocal ? "development" : "production",
   // Run babel on all .js files and skip those in node_modules
   module: {
     rules: [
