@@ -8,6 +8,14 @@ module.exports = {
   // we exclude all node dependencies
   externals: [nodeExternals()],
   mode: slsw.lib.webpack.isLocal ? "development" : "production",
+  optimization: {
+    // We no not want to minimize our code.
+    minimize: false
+  },
+  performance: {
+    // Turn off size warnings for entry points
+    hints: false
+  },
   // Run babel on all .js files and skip those in node_modules
   module: {
     rules: [
