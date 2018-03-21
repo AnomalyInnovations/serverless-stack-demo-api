@@ -1,7 +1,7 @@
 {
   "plugins": ["transform-runtime"],
   "presets": [
-    ["env", { "node": "6.10" }], 
+    ["env", { "node": "6.10" }],
     "stage-3"
   ]
 }
