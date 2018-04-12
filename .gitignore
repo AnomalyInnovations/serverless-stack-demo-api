@@ -36,7 +36,17 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-.webpack/
-.serverless/
+# vim
+.*.sw*
+Session.vim
 
+# Serverless
+.webpack
+.serverless
+
+# env
 env.yml
+.env
+
+# Jetbrains IDEs
+.idea
