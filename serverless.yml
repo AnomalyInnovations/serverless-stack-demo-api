@@ -1,4 +1,4 @@
-service: notes-app-api
+service: notes-app-2-api
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -15,7 +15,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: prod
+  stage: dev
   region: us-east-1
 
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
