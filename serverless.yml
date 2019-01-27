@@ -114,6 +114,7 @@ functions:
           cors: true
           authorizer: aws_iam
 
+<<<<<<< HEAD
   billing:
     handler: billing.main
     events:
@@ -125,6 +126,8 @@ functions:
 
 # Create our resources with separate CloudFormation templates
 resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}
   # DynamoDB
   - ${file(resources/dynamodb-table.yml)}
   # S3
