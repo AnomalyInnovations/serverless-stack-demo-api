@@ -115,7 +115,6 @@ functions:
           cors: true
           authorizer: aws_iam
 
-<<<<<<< HEAD
   billing:
     handler: billing.main
     events:
