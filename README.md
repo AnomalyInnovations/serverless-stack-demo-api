@@ -15,6 +15,7 @@ To support the different chapters and steps of the tutorial; we use branches to 
 - [Add a List All the Notes API](../../tree/add-a-list-all-the-notes-api)
 - [Add an Update Note API](../../tree/add-an-update-note-api)
 - [Add a Delete Note API](../../tree/add-a-delete-note-api)
+- [Handle API Gateway CORS errors](../../tree/handle-api-gateway-cors-errors)
 - [Unit Tests in Serverless](../../tree/unit-tests-in-serverless)
 
 #### Usage
