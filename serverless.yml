@@ -1,34 +1,45 @@
-# NOTE: update this with your service name
 service: notes-app-api
 
-# Use the serverless-webpack plugin to transpile ES6
-plugins:
-  - serverless-webpack
-  - serverless-offline
+# Create an optimized package for our functions 
+package:
+  individually: true
 
-# serverless-webpack configuration
-# Enable auto-packing of external modules
-custom:
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
+plugins:
+  - serverless-bundle # Package our functions with Webpack
+  - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: dev
+  stage: prod
   region: us-east-1
-  # To load environment variables externally
-  # rename env.example to env.yml and uncomment
-  # the following line. Also, make sure to not
-  # commit your env.yml.
-  #
-  #environment: ${file(env.yml):${self:provider.stage}}
+
+  # 'iamRoleStatements' defines the permission policy for the Lambda function.
+  # In this case Lambda functions are granted with permissions to access DynamoDB.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
 functions:
-  hello:
-    handler: handler.hello
+  # Defines an HTTP API endpoint that calls the main function in create.js
+  # - path: url path is /notes
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  create:
+    handler: create.main
     events:
       - http:
-          path: hello
-          method: get
+          path: notes
+          method: post
+          cors: true
+          authorizer: aws_iam
