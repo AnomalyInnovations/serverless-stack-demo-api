@@ -18,6 +18,7 @@
     "serverless-offline": "^5.3.3"
   },
   "dependencies": {
+    "stripe": "^7.4.0",
     "uuid": "^3.3.2"
   }
 }
