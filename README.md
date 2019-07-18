@@ -8,14 +8,13 @@ This repo is for the serverless backend API that we build over the course of the
 
 To support the different chapters and steps of the tutorial; we use branches to represent the project codebase at the various points. Here is an index of the various chapters and branches in order.
 
-- [Set up the Serverless Framework](../../tree/setup-the-serverless-framework)
-- [Add Support for ES6/ES7 JavaScript](../../tree/add-support-for-es6-es7-javascript)
 - [Add a Create Note API](../../tree/add-a-create-note-api)
 - [Add a Get Note API](../../tree/add-a-get-note-api)
 - [Add a List All the Notes API](../../tree/add-a-list-all-the-notes-api)
 - [Add an Update Note API](../../tree/add-an-update-note-api)
 - [Add a Delete Note API](../../tree/add-a-delete-note-api)
 - [Handle API Gateway CORS errors](../../tree/handle-api-gateway-cors-errors)
+- [Deploy Your Serverless Infrastructure](../../tree/deploy-your-serverless-infrastructure)
 - [Unit Tests in Serverless](../../tree/unit-tests-in-serverless)
 
 #### Usage
