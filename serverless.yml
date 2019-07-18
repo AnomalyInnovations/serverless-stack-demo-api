@@ -1,8 +1,11 @@
 service: notes-app-2-api
 
-# Use the serverless-webpack plugin to transpile ES6
+# Create an optimized package for our functions 
+package:
+  individually: true
+
 plugins:
-  - serverless-webpack
+  - serverless-bundle # Package our functions with Webpack
   - serverless-offline
 
 custom:
@@ -11,10 +14,6 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
   tableName: ${self:custom.stage}-notes
-  # Load our webpack config
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
   # Load our secret environment variables based on the current stage.
   # Fallback to default if it is not in prod.
   environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
