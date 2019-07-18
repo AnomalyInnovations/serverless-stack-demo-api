@@ -1,5 +1,5 @@
 {
-  "name": "serverless-nodejs-starter",
+  "name": "notes-app-api",
   "version": "1.1.0",
   "description": "Demo notes API created as a part of the Serverless-Stack.com tutorial.",
   "main": "handler.js",
