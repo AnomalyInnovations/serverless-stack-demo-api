@@ -13,7 +13,5 @@ Resources:
           KeyType: HASH
         - AttributeName: noteId
           KeyType: RANGE
-      # Set the capacity based on the stage
-      ProvisionedThroughput:
-        ReadCapacityUnits: ${self:custom.tableThroughput}
-        WriteCapacityUnits: ${self:custom.tableThroughput}
+      # Set the capacity to auto-scale
+      BillingMode: PAY_PER_REQUEST

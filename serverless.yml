@@ -11,11 +11,6 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
   tableName: ${self:custom.stage}-notes
-  # Set our DynamoDB throughput for prod and all other non-prod stages.
-  tableThroughputs:
-    prod: 5
-    default: 1
-  tableThroughput: ${self:custom.tableThroughputs.${self:custom.stage}, self:custom.tableThroughputs.default}
   # Load our webpack config
   webpack:
     webpackConfig: ./webpack.config.js
