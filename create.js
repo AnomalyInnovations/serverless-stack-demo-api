@@ -4,8 +4,7 @@ import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
 
-const a = 1;
-a.d.c;
+uuid.abc.d;
 
   const data = JSON.parse(event.body);
   const params = {
