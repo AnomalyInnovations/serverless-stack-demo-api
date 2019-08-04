@@ -2,7 +2,8 @@ import uuid from "uuid";
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
-uuid.abc.d;
+const a = 1;
+a.d;
 
 export async function main(event, context) {
   const data = JSON.parse(event.body);
