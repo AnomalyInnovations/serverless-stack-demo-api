@@ -6,11 +6,54 @@ This repo is for the serverless backend API that we build over the course of the
 
 #### Steps
 
-This branch in the repo is related to one of the steps in the guide. Here is an index of the various steps in order.
+To support the different chapters and steps of the tutorial; we use branches to represent the project codebase at the various points. Here is an index of the various chapters and branches in order.
 
 - [Initialize the Backend Repo](../../tree/initialize-the-backend-repo)
 - [Handle API Gateway CORS Errors](../../tree/handle-api-gateway-cors-errors)
 - [Deploy Your Serverless Infrastructure](../../tree/deploy-your-serverless-infrastructure)
+
+#### Usage
+
+To use this repo locally you need to have the [Serverless framework](https://serverless.com) installed.
+
+``` bash
+$ npm install serverless -g
+```
+
+Clone this repo and install the NPM packages.
+
+``` bash
+$ git clone https://github.com/AnomalyInnovations/serverless-stack-demo-api
+$ npm install
+```
+
+Run a single API on local.
+
+``` bash
+$ serverless invoke local --function list --path event.json
+```
+
+Where, `event.json` contains the request event info and looks something like this.
+
+``` json
+{
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "USER-SUB-1234"
+      }
+    }
+  }
+}
+```
+
+Finally, run this to deploy to your AWS account.
+
+``` bash
+$ serverless deploy
+```
+
+This project refers to an `.env` file for secret environment variables that are not checking in to the repo. Make sure to create one before dpeloying - https://serverless-stack.com/chapters/load-secrets-from-env.html.
 
 ---
 
