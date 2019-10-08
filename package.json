@@ -1,7 +1,7 @@
 {
-  "name": "notes-app-api",
+  "name": "serverless-nodejs-starter",
   "version": "1.1.0",
-  "description": "Demo notes API created as a part of the Serverless-Stack.com tutorial.",
+  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
   "main": "handler.js",
   "scripts": {
     "test": "serverless-bundle test"
@@ -10,15 +10,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnomalyInnovations/serverless-stack-demo-api.git"
+    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
   },
   "devDependencies": {
-    "aws-sdk": "^2.494.0",
+    "aws-sdk": "^2.536.0",
     "serverless-bundle": "^1.2.2",
+    "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.3.3"
   },
   "dependencies": {
-    "stripe": "^7.4.0",
-    "uuid": "^3.3.2"
+    "stripe": "^7.9.1",
+    "uuid": "^3.3.3"
   }
 }

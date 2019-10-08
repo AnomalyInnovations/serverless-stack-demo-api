@@ -8,14 +8,9 @@ This repo is for the serverless backend API that we build over the course of the
 
 To support the different chapters and steps of the tutorial; we use branches to represent the project codebase at the various points. Here is an index of the various chapters and branches in order.
 
-- [Add a Create Note API](../../tree/add-a-create-note-api)
-- [Add a Get Note API](../../tree/add-a-get-note-api)
-- [Add a List All the Notes API](../../tree/add-a-list-all-the-notes-api)
-- [Add an Update Note API](../../tree/add-an-update-note-api)
-- [Add a Delete Note API](../../tree/add-a-delete-note-api)
-- [Handle API Gateway CORS errors](../../tree/handle-api-gateway-cors-errors)
+- [Initialize the Backend Repo](../../tree/initialize-the-backend-repo)
+- [Handle API Gateway CORS Errors](../../tree/handle-api-gateway-cors-errors)
 - [Deploy Your Serverless Infrastructure](../../tree/deploy-your-serverless-infrastructure)
-- [Unit Tests in Serverless](../../tree/unit-tests-in-serverless)
 
 #### Usage
 
@@ -58,11 +53,10 @@ Finally, run this to deploy to your AWS account.
 $ serverless deploy
 ```
 
-This project refers to an `env.yml` file for secret environment variables that are not checking in to the repo. Make sure to create one before dpeloying - https://serverless-stack.com/chapters/load-secrets-from-env-yml.html.
+This project refers to an `.env` file for secret environment variables that are not checking in to the repo. Make sure to create one before dpeloying - https://serverless-stack.com/chapters/load-secrets-from-env.html.
 
 ---
 
 This repo is maintained by [Anomaly Innovations](https://anoma.ly); makers of [Seed](https://seed.run) and [Serverless Stack](https://serverless-stack.com).
 
 [Email]: mailto:contact@anoma.ly
-
