@@ -1,25 +1,27 @@
 {
-  "name": "serverless-nodejs-starter",
-  "version": "1.1.0",
-  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
-  "main": "handler.js",
-  "scripts": {
-    "test": "serverless-bundle test"
-  },
-  "author": "",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+  "name": "serverless-stack-demo-ext-api",
+  "version": "1.0.0",
+  "description": "[Serverless Stack](https://serverless-stack.com) is a free comprehensive guide to creating full-stack serverless applications. We create a [note taking app](https://demo2.serverless-stack.com) from scratch.",
+  "main": "config.js",
+  "dependencies": {
+    "aws-xray-sdk": "^2.3.6"
   },
   "devDependencies": {
-    "aws-sdk": "^2.536.0",
-    "serverless-bundle": "^1.2.2",
-    "serverless-dotenv-plugin": "^2.1.1",
-    "serverless-offline": "^5.3.3"
+    "aws-sdk": "^2.541.0",
+    "serverless-bundle": "^1.2.5",
+    "serverless-offline": "^5.12.0"
   },
-  "dependencies": {
-    "stripe": "^7.9.1",
-    "uuid": "^3.3.3"
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fwang/serverless-stack-demo-ext-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fwang/serverless-stack-demo-ext-api/issues"
+  },
+  "homepage": "https://github.com/fwang/serverless-stack-demo-ext-api#readme"
 }

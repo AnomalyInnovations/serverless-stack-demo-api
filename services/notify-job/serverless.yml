@@ -1,0 +1,35 @@
+service: notes-app-ext-notify-job
+
+plugins:
+  - serverless-bundle
+
+custom: ${file(../../serverless.common.yml):custom}
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-east-1
+  environment:
+    stage: ${self:custom.stage}
+    resourcesStage: ${self:custom.resourcesStage}
+  tracing:
+    lambda: true
+
+  iamRoleStatements:
+    - ${file(../../serverless.common.yml):lambdaPolicyXRay}
+    - Effect: Allow
+      Action:
+        - sns:Publish
+      Resource: '*'
+
+functions:
+  notify:
+    handler: notify.main
+    events:
+      - sns:
+        'Fn::ImportValue': ExtNotePurchasedTopicArn-${self:custom.stage}
+

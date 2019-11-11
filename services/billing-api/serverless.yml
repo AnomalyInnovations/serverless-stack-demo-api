@@ -1,0 +1,81 @@
+service: notes-app-ext-billing-api
+
+plugins:
+  - serverless-bundle
+  - serverless-offline
+
+custom: ${file(../../serverless.common.yml):custom}
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-east-1
+  tracing:
+    lambda: true
+
+  apiGateway:
+    restApiId:
+      'Fn::ImportValue': ${self:custom.stage}-ExtApiGatewayRestApiId
+    restApiRootResourceId:
+      'Fn::ImportValue': ${self:custom.stage}-ExtApiGatewayRestApiRootResourceId
+
+  # These environment variables are made available to our functions
+  # under process.env.
+  environment:
+    stage: ${self:custom.stage}
+    resourcesStage: ${self:custom.resourcesStage}
+    notePurchasedTopicArn:
+      Ref: NotePurchasedTopic
+
+  iamRoleStatements:
+    - ${file(../../serverless.common.yml):lambdaPolicyXRay}
+    - Effect: Allow
+      Action:
+        - ssm:GetParameter
+      Resource:
+        Fn::Join:
+          - ''
+          -
+            - 'arn:aws:ssm:'
+            - Ref: AWS::Region
+            - ':'
+            - Ref: AWS::AccountId
+            - ':parameter/stripeSecretKey/*'
+
+    - Effect: Allow
+      Action:
+        - sns:Publish
+      Resource:
+        - Ref: NotePurchasedTopic
+
+functions:
+  # Defines an HTTP API endpoint that calls the main function in billing.js
+  # - path: url path is /billing
+  # - method: POST request
+  billing:
+    handler: billing.main
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
+
+resources:
+  Resources:
+    NotePurchasedTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: note-purchased-${self:custom.stage}
+
+  Outputs:
+    NotePurchasedTopicArn:
+      Value:
+        Ref: NotePurchasedTopic
+      Export:
+        Name: ExtNotePurchasedTopicArn-${self:custom.stage}
+

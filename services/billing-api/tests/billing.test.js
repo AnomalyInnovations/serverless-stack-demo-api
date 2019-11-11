@@ -26,3 +26,4 @@ test("Highest tier", () => {
 
   expect(cost).toEqual(expectedCost);
 });
+

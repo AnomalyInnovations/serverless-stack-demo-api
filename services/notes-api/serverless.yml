@@ -1,34 +1,31 @@
-service: notes-app-2-api
-
-# Create an optimized package for our functions
-package:
-  individually: true
+service: notes-app-ext-notes-api
 
 plugins:
-  - serverless-bundle # Package our functions with Webpack
+  - serverless-bundle
   - serverless-offline
-  - serverless-dotenv-plugin # Load .env as environment variables
 
-custom:
-  # Our stage is based on what is passed in when running serverless
-  # commands. Or fallsback to what we have set in the provider section.
-  stage: ${opt:stage, self:provider.stage}
-  # Set the table name here so we can use it while testing locally
-  tableName: ${self:custom.stage}-notes
+custom: ${file(../../serverless.common.yml):custom}
+
+package:
+  individually: true
 
 provider:
   name: aws
   runtime: nodejs10.x
   stage: dev
   region: us-east-1
+  tracing:
+    apiGateway: true
+    lambda: true
 
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    tableName: ${self:custom.tableName}
-    stripeSecretKey: ${env:STRIPE_SECRET_KEY}
+    stage: ${self:custom.stage}
+    resourcesStage: ${self:custom.resourcesStage}
 
   iamRoleStatements:
+    - ${file(../../serverless.common.yml):lambdaPolicyXRay}
     - Effect: Allow
       Action:
         - dynamodb:DescribeTable
@@ -41,7 +38,7 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "Fn::GetAtt": [ NotesTable, Arn ]
+        - 'Fn::ImportValue': ${self:custom.resourcesStage}-ExtNotesTableArn
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -107,26 +104,24 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  billing:
-    # Defines an HTTP API endpoint that calls the main function in billing.js
-    # - path: url path is /billing
-    # - method: POST request
-    handler: billing.main
-    events:
-      - http:
-          path: billing
-          method: post
-          cors: true
-          authorizer: aws_iam
-
-# Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
   - ${file(resources/api-gateway-errors.yml)}
-  # DynamoDB
-  - ${file(resources/dynamodb-table.yml)}
-  # S3
-  - ${file(resources/s3-bucket.yml)}
-  # Cognito
-  - ${file(resources/cognito-user-pool.yml)}
-  - ${file(resources/cognito-identity-pool.yml)}
+  # Cognito Identity Pool Policy
+  - ${file(resources/cognito-policy.yml)}
+
+  - Outputs:
+      ApiGatewayRestApiId:
+        Value:
+          Ref: ApiGatewayRestApi
+        Export:
+          Name: ${self:custom.stage}-ExtApiGatewayRestApiId
+    
+      ApiGatewayRestApiRootResourceId:
+        Value:
+           Fn::GetAtt:
+            - ApiGatewayRestApi
+            - RootResourceId 
+        Export:
+          Name: ${self:custom.stage}-ExtApiGatewayRestApiRootResourceId
+
