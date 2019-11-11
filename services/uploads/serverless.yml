@@ -8,7 +8,7 @@ custom:
 provider:
   name: aws
   stage: dev
-  region: us-east-1
+  region: ap-southeast-1
 
 resources:
   Resources:
