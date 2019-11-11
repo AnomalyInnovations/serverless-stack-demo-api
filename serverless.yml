@@ -1,0 +1,35 @@
+service: note-express-api
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-east-2
+environment:
+  NOTES_TABLE: ${env:NOTES_TABLE}
+  STRIPE_SECRET_KEY: ${env:STRIPE_SECRET_KEY}
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+      - lambda: InvokeFunction
+    Resource:
+      - arn:aws:dynamodb:us-east-2:280639150158:table/notes
+      - arn:aws:lambda:us-east-2:*:*
+resources:
+  - ${file(resources/api-gateway-errors.yml)}
+functions:
+  app:
+    handler: dist/index.handler
+    events:
+      - http:
+          path: notes
+          method: get
+          cors: true
+          authorizer: aws_iam

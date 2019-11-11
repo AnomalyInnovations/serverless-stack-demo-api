@@ -1,3 +1,4 @@
+
 # Logs
 logs
 *.log
@@ -50,3 +51,7 @@ env.yml
 
 # Jetbrains IDEs
 .idea
+
+/dist
+
+/tmpnodejsnpm-cache

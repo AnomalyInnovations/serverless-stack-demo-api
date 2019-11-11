@@ -1,27 +1,39 @@
 {
-  "name": "serverless-stack-demo-ext-api",
+  "name": "note-express-api",
   "version": "1.0.0",
-  "description": "[Serverless Stack](https://serverless-stack.com) is a free comprehensive guide to creating full-stack serverless applications. We create a [note taking app](https://demo2.serverless-stack.com) from scratch.",
-  "main": "config.js",
-  "dependencies": {
-    "aws-xray-sdk": "^2.3.6"
-  },
-  "devDependencies": {
-    "aws-sdk": "^2.541.0",
-    "serverless-bundle": "^1.2.5",
-    "serverless-offline": "^5.12.0"
-  },
+  "description": "",
+  "main": "dist/index.js",
   "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fwang/serverless-stack-demo-ext-api.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fwang/serverless-stack-demo-ext-api/issues"
+  "dependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/body-parser": "^1.17.1",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "@types/joi": "^14.3.4",
+    "@types/node": "^12.12.5",
+    "@types/stripe": "^7.10.7",
+    "@types/uuid": "^3.4.6",
+    "aws-sdk": "^2.562.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "serverless-http": "^2.3.0",
+    "stripe": "^7.11.0",
+    "ts-node": "^8.4.1"
   },
-  "homepage": "https://github.com/fwang/serverless-stack-demo-ext-api#readme"
+  "devDependencies": {
+    "tslint": "^6.0.0-beta0",
+    "typescript": "^3.6.4"
+  }
 }
