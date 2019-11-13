@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - features/cicd
 
 name: Deploy master branch
 jobs:
