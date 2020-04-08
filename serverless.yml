@@ -11,6 +11,6 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   stage: prod
   region: us-east-1
