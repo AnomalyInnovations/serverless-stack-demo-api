@@ -1,7 +1,7 @@
-import * as dynamoDbLib from "./libs/dynamodb-lib";
-import { success, failure } from "./libs/response-lib";
+import handler from "./libs/handler-lib";
+import dynamoDb from "./libs/dynamodb-lib";
 
-export async function main(event, context) {
+export const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.tableName,
@@ -25,10 +25,7 @@ export async function main(event, context) {
     ReturnValues: "ALL_NEW"
   };
 
-  try {
-    await dynamoDbLib.call("update", params);
-    return success({ status: true });
-  } catch (e) {
-    return failure({ status: false });
-  }
-}
+  await dynamoDb.update(params);
+
+  return { status: true };
+});

@@ -1,7 +1,11 @@
 import AWS from "aws-sdk";
 
-export function call(action, params) {
-  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const client = new AWS.DynamoDB.DocumentClient();
 
-  return dynamoDb[action](params).promise();
-}
+export default {
+  get   : (params) => client.get(params).promise(),
+  put   : (params) => client.put(params).promise(),
+  query : (params) => client.query(params).promise(),
+  update: (params) => client.update(params).promise(),
+  delete: (params) => client.delete(params).promise(),
+};
