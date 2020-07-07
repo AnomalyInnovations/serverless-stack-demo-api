@@ -1,22 +1,24 @@
 export default function handler(lambda) {
-  return function (event, context) {
-    return Promise.resolve()
+  return async function (event, context) {
+    let body, statusCode;
+
+    try {
       // Run the Lambda
-      .then(() => lambda(event, context))
-      // On success
-      .then((responseBody) => [200, responseBody])
-      // On failure
-      .catch((e) => {
-        return [500, { error: e.message }];
-      })
-      // Return HTTP response
-      .then(([statusCode, body]) => ({
-        statusCode,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
-        body: JSON.stringify(body),
-      }));
+      body = await lambda(event, context);
+      statusCode = 200;
+    } catch (e) {
+      body = { error: e.message };
+      statusCode = 500;
+    }
+
+    // Return HTTP response
+    return {
+      statusCode,
+      body: JSON.stringify(body),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+    };
   };
 }
