@@ -78,7 +78,7 @@ Resources:
                 Action:
                   - 's3:*'
                 Resource:
-                  !Sub '${AttachmentsBucket.Arn}/private/{cognito-identity.amazonaws.com:sub}/*'
+                  !Sub '${AttachmentsBucket.Arn}/private/${cognito-identity.amazonaws.com:sub}/*'
                   #- Fn::Join:
                   #  - ''
                   #  -
