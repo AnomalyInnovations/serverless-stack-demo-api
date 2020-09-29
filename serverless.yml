@@ -1,4 +1,5 @@
 service: notes-app-2-api
+frameworkVersion: ">=2.3.0"
 
 # Create an optimized package for our functions
 package:
