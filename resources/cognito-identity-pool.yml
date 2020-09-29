@@ -78,8 +78,8 @@ Resources:
                 Action:
                   - 's3:*'
                 Resource: !Sub
-                  - '${AttachmentsBucket.Arn}/private/${UserSub}/*'
-                  - { UserSub: '${cognito-identity.amazonaws.com:sub}'}
+                  - '${AttachmentsBucket.Arn}/private/$${UserSub}/*'
+                  - { UserSub: '{cognito-identity.amazonaws.com:sub}'}
                   #- Fn::Join:
                   #  - ''
                   #  -
