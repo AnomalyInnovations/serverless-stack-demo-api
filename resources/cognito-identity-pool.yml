@@ -77,8 +77,9 @@ Resources:
               - Effect: 'Allow'
                 Action:
                   - 's3:*'
-                Resource:
-                  !Sub '${AttachmentsBucket.Arn}/private/\${cognito-identity.amazonaws.com:sub}/*'
+                Resource: !Sub
+                  - '${AttachmentsBucket.Arn}/private/${UserSub}/*'
+                  - { UserSub: '${cognito-identity.amazonaws.com:sub}'}
                   #- Fn::Join:
                   #  - ''
                   #  -
