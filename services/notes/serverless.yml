@@ -16,8 +16,6 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # Name of our SST app, that's deploying our infrastructure
   sstApp: ${self:custom.stage}-sst-notes
-  # Set the table name here so we can use it while testing locally
-  tableName: ${self:custom.sstApp}-table
 
 provider:
   name: aws
@@ -28,8 +26,8 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    tableName: ${self:custom.tableName}
     stripeSecretKey: ${env:STRIPE_SECRET_KEY}
+    tableName: "Fn::ImportValue": ${self:custom.sstApp}-TableName
 
   iamRoleStatements:
     - Effect: Allow
