@@ -1,6 +1,6 @@
-import S3Stack from './S3Stack';
-import CognitoStack from './CognitoStack';
-import DynamoDBStack from './DynamoDBStack';
+import S3Stack from "./S3Stack";
+import CognitoStack from "./CognitoStack";
+import DynamoDBStack from "./DynamoDBStack";
 
 // Add stacks
 export default function main(app) {

@@ -1,9 +1,8 @@
-import * as cdk from '@aws-cdk/core';
-import * as iam from '@aws-cdk/aws-iam';
-import * as cognito from '@aws-cdk/aws-cognito';
+import * as cdk from "@aws-cdk/core";
+import * as iam from "@aws-cdk/aws-iam";
+import * as cognito from "@aws-cdk/aws-cognito";
 
 export default class CognitoAuthRole extends cdk.Construct {
-
   role;
 
   constructor(scope, id, props) {
@@ -12,29 +11,39 @@ export default class CognitoAuthRole extends cdk.Construct {
     const { identityPool } = props;
 
     // IAM role used for authenticated users
-    this.role = new iam.Role(this, 'cognitoDefaultAuthenticatedRole', {
-      assumedBy: new iam.FederatedPrincipal('cognito-identity.amazonaws.com', {
-        StringEquals: { 'cognito-identity.amazonaws.com:aud': identityPool.ref },
-        'ForAnyValue:StringLike': {
-          'cognito-identity.amazonaws.com:amr': 'authenticated'
+    this.role = new iam.Role(this, "cognitoDefaultAuthenticatedRole", {
+      assumedBy: new iam.FederatedPrincipal(
+        "cognito-identity.amazonaws.com",
+        {
+          StringEquals: {
+            "cognito-identity.amazonaws.com:aud": identityPool.ref,
+          },
+          "ForAnyValue:StringLike": {
+            "cognito-identity.amazonaws.com:amr": "authenticated",
+          },
         },
-      }, 'sts:AssumeRoleWithWebIdentity'),
+        "sts:AssumeRoleWithWebIdentity"
+      ),
     });
-    this.role.addToPolicy(new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
-      actions: [
-        'mobileanalytics:PutEvents',
-        'cognito-sync:*',
-        'cognito-identity:*'
-      ],
-      resources: [ '*' ],
-    }));
+    this.role.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+          "mobileanalytics:PutEvents",
+          "cognito-sync:*",
+          "cognito-identity:*",
+        ],
+        resources: ["*"],
+      })
+    );
 
-    new cognito.CfnIdentityPoolRoleAttachment(this, 'identityPoolRoleAttachment', {
-      identityPoolId: identityPool.ref,
-      roles: { authenticated: this.role.roleArn },
-    });
+    new cognito.CfnIdentityPoolRoleAttachment(
+      this,
+      "identityPoolRoleAttachment",
+      {
+        identityPoolId: identityPool.ref,
+        roles: { authenticated: this.role.roleArn },
+      }
+    );
   }
 }
-
-

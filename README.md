@@ -16,26 +16,26 @@ To support the different chapters and steps of the tutorial; we use branches to 
 
 To use this repo locally you need to have the [Serverless framework](https://serverless.com) installed.
 
-``` bash
+```bash
 $ npm install serverless -g
 ```
 
 Clone this repo and install the NPM packages.
 
-``` bash
+```bash
 $ git clone https://github.com/AnomalyInnovations/serverless-stack-demo-api
 $ npm install
 ```
 
 Run a single API on local.
 
-``` bash
+```bash
 $ serverless invoke local --function list --path event.json
 ```
 
 Where, `event.json` contains the request event info and looks something like this.
 
-``` json
+```json
 {
   "requestContext": {
     "authorizer": {
@@ -49,7 +49,7 @@ Where, `event.json` contains the request event info and looks something like thi
 
 Finally, run this to deploy to your AWS account.
 
-``` bash
+```bash
 $ serverless deploy
 ```
 
@@ -59,4 +59,4 @@ This project refers to an `.env` file for secret environment variables that are 
 
 This repo is maintained by [Anomaly Innovations](https://anoma.ly); makers of [Seed](https://seed.run) and [Serverless Stack](https://serverless-stack.com).
 
-[Email]: mailto:contact@anoma.ly
+[email]: mailto:contact@anoma.ly
