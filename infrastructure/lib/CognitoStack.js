@@ -2,6 +2,7 @@ import { CfnOutput } from '@aws-cdk/core';
 import * as iam from '@aws-cdk/aws-iam';
 import * as cognito from '@aws-cdk/aws-cognito';
 import * as sst from "@serverless-stack/resources";
+import CognitoAuthRole from "./CognitoAuthRole";
 
 export default class CognitoStack extends sst.Stack {
 
@@ -12,19 +13,19 @@ export default class CognitoStack extends sst.Stack {
 
     const app = this.node.root;
 
-    const userPool = new cognito.UserPool(this, 'userPool', {
+    const userPool = new cognito.UserPool(this, 'UserPool', {
       selfSignUpEnabled: true,
       autoVerify: { email: true },
       signInAliases: { email: true }, // Set email as an alias
     });
 
-    const userPoolClient = new cognito.UserPoolClient(this, 'userPoolClient', {
+    const userPoolClient = new cognito.UserPoolClient(this, 'UserPoolClient', {
       userPool,
-      authFlows: { adminUserPassword: false },
       generateSecret: false,
+      authFlows: { adminUserPassword: false },
     });
 
-    const identityPool = new cognito.CfnIdentityPool(this, 'identityPool', {
+    const identityPool = new cognito.CfnIdentityPool(this, 'IdentityPool', {
       allowUnauthenticatedIdentities: false, // Don't allow unathenticated users
       cognitoIdentityProviders: [{
         clientId: userPoolClient.userPoolClientId,
@@ -32,32 +33,15 @@ export default class CognitoStack extends sst.Stack {
       }],
     });
 
-    // IAM role used for authenticated users
-    const authenticatedRole = new iam.Role(this, 'cognitoDefaultAuthenticatedRole', {
-      assumedBy: new iam.FederatedPrincipal('cognito-identity.amazonaws.com', {
-        StringEquals: { 'cognito-identity.amazonaws.com:aud': identityPool.ref },
-        'ForAnyValue:StringLike': { 'cognito-identity.amazonaws.com:amr': 'authenticated' },
-      }, 'sts:AssumeRoleWithWebIdentity'),
+    const authenticatedRole = new CognitoAuthRole(this, 'CognitoAuthRole', {
+      identityPool
     });
-    authenticatedRole.addToPolicy(new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
-      actions: [
-        'mobileanalytics:PutEvents',
-        'cognito-sync:*',
-        'cognito-identity:*'
-      ],
-      resources: [ '*' ],
-    }));
-    authenticatedRole.addToPolicy(new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
+
+    authenticatedRole.role.addToPolicy(new iam.PolicyStatement({
       actions: [ 's3:*' ],
+      effect: iam.Effect.ALLOW,
       resources: [ bucketArn + '/private/${cognito-identity.amazonaws.com:sub}/*' ],
     }));
-
-    new cognito.CfnIdentityPoolRoleAttachment(this, 'identityPoolRoleAttachment', {
-      identityPoolId: identityPool.ref,
-      roles: { authenticated: authenticatedRole.roleArn },
-    });
 
     // Export values
     new CfnOutput(this, 'UserPoolId', {
@@ -71,7 +55,7 @@ export default class CognitoStack extends sst.Stack {
     });
     new CfnOutput(this, 'AuthenticatedRoleName', {
       exportName: app.logicalPrefixedName("CognitoAuthRole"),
-      value: authenticatedRole.roleName,
+      value: authenticatedRole.role.roleName,
     });
   }
 }

@@ -9,7 +9,7 @@ export default class DynamoDBStack extends sst.Stack {
 
     const app = this.node.root;
 
-    const table = new dynamodb.Table(this, "table", {
+    const table = new dynamodb.Table(this, "Table", {
       tableName: app.logicalPrefixedName("table"),
       partitionKey: { name: 'userId', type: dynamodb.AttributeType.STRING },
       sortKey: { name: 'noteId', type: dynamodb.AttributeType.STRING },

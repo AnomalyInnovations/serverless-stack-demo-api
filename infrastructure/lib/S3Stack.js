@@ -8,7 +8,7 @@ export default class S3Stack extends sst.Stack {
 
     const app = this.node.root;
 
-    this.bucket = new s3.Bucket(this, 'uploads', {
+    this.bucket = new s3.Bucket(this, 'Uploads', {
       cors: [{
         allowedMethods: [ 'GET', 'PUT', 'POST', 'DELETE', 'HEAD' ],
         allowedOrigins: [ '*' ],
