@@ -59,8 +59,8 @@ export default class CognitoStack extends sst.Stack {
       value: identityPool.ref,
     });
     new CfnOutput(this, "AuthenticatedRoleName", {
-      exportName: app.logicalPrefixedName("CognitoAuthRole"),
       value: authenticatedRole.role.roleName,
+      exportName: app.logicalPrefixedName("CognitoAuthRole"),
     });
   }
 }

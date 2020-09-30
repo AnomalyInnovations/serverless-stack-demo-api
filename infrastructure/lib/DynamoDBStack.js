@@ -9,20 +9,19 @@ export default class DynamoDBStack extends sst.Stack {
     const app = this.node.root;
 
     const table = new dynamodb.Table(this, "Table", {
-      tableName: app.logicalPrefixedName("table"),
-      partitionKey: { name: "userId", type: dynamodb.AttributeType.STRING },
-      sortKey: { name: "noteId", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      sortKey: { name: "noteId", type: dynamodb.AttributeType.STRING },
+      partitionKey: { name: "userId", type: dynamodb.AttributeType.STRING },
     });
 
     // Output values
     new CfnOutput(this, "TableName", {
-      exportName: app.logicalPrefixedName("TableName"),
       value: table.tableName,
+      exportName: app.logicalPrefixedName("TableName"),
     });
     new CfnOutput(this, "TableArn", {
-      exportName: app.logicalPrefixedName("TableArn"),
       value: table.tableArn,
+      exportName: app.logicalPrefixedName("TableArn"),
     });
   }
 }

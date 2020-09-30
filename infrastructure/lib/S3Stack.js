@@ -9,10 +9,10 @@ export default class S3Stack extends sst.Stack {
     this.bucket = new s3.Bucket(this, "Uploads", {
       cors: [
         {
-          allowedMethods: ["GET", "PUT", "POST", "DELETE", "HEAD"],
+          maxAge: 3000,
           allowedOrigins: ["*"],
           allowedHeaders: ["*"],
-          maxAge: 3000,
+          allowedMethods: ["GET", "PUT", "POST", "DELETE", "HEAD"],
         },
       ],
     });
