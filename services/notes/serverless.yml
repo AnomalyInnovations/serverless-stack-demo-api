@@ -27,7 +27,7 @@ provider:
   # under process.env.
   environment:
     stripeSecretKey: ${env:STRIPE_SECRET_KEY}
-    tableName: "Fn::ImportValue": ${self:custom.sstApp}-TableName
+    tableName: !ImportValue '${self:custom.sstApp}-TableName'
 
   iamRoleStatements:
     - Effect: Allow
@@ -42,7 +42,7 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "Fn::ImportValue": ${self:custom.sstApp}-TableArn
+        - !ImportValue '${self:custom.sstApp}-TableArn'
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js

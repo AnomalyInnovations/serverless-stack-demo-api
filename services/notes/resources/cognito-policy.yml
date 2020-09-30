@@ -2,7 +2,7 @@ Resources:
   CognitoAuthorizedApiPolicy:
     Type: AWS::IAM::Policy
     Properties:
-      PolicyName: ${self:custom.stage}-CognitoAuthorizedApiPolicy
+      PolicyName: ${self:custom.stage}-CognitoNotesAuthorizedApiPolicy
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -12,4 +12,4 @@ Resources:
             Resource:
               !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*'
       Roles:
-        - "Fn::ImportValue": ${self:custom.sstApp}-CognitoAuthRole
+        - !ImportValue '${self:custom.sstApp}-CognitoAuthRole'
