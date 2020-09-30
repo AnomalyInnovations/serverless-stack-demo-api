@@ -2,7 +2,6 @@ import stripePackage from "stripe";
 import handler from "./libs/handler-lib";
 import { calculateCost } from "./libs/billing-lib";
 
-// eslint-disable-next-line no-unused-vars
 export const main = handler(async (event, context) => {
   const { storage, source } = JSON.parse(event.body);
   const amount = calculateCost(storage);
