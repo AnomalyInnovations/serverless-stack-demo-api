@@ -1,4 +1,4 @@
-service: notes-app-sst-api
+service: notes-api
 frameworkVersion: ">=2.3.0"
 
 # Create an optimized package for our functions
@@ -14,8 +14,8 @@ custom:
   # Our stage is based on what is passed in when running serverless
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
-  # Name of our SST app, that's deploying our infrastructure
-  sstApp: ${self:custom.stage}-sst-notes
+  # Name of the SST app that's deploying our infrastructure
+  sstApp: ${self:custom.stage}-notes-infra
 
 provider:
   name: aws
@@ -32,13 +32,13 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:DescribeTable
-        - dynamodb:Query
         - dynamodb:Scan
+        - dynamodb:Query
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:

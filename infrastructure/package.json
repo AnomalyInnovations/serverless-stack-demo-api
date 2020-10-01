@@ -17,7 +17,7 @@
     "@aws-cdk/aws-iam": "1.61.0",
     "@aws-cdk/aws-s3": "1.61.0",
     "@aws-cdk/core": "1.61.0",
-    "@serverless-stack/cli": "0.3.0",
-    "@serverless-stack/resources": "0.3.0"
+    "@serverless-stack/cli": "0.3.2",
+    "@serverless-stack/resources": "0.3.2"
   }
 }
