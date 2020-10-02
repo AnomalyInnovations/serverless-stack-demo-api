@@ -12,7 +12,7 @@ export default class CognitoAuthRole extends cdk.Construct {
     const { identityPool } = props;
 
     // IAM role used for authenticated users
-    this.role = new iam.Role(this, "cognitoDefaultAuthenticatedRole", {
+    this.role = new iam.Role(this, "CognitoDefaultAuthenticatedRole", {
       assumedBy: new iam.FederatedPrincipal(
         "cognito-identity.amazonaws.com",
         {
@@ -40,7 +40,7 @@ export default class CognitoAuthRole extends cdk.Construct {
 
     new cognito.CfnIdentityPoolRoleAttachment(
       this,
-      "identityPoolRoleAttachment",
+      "IdentityPoolRoleAttachment",
       {
         identityPoolId: identityPool.ref,
         roles: { authenticated: this.role.roleArn },
