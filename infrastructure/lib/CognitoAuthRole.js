@@ -3,6 +3,7 @@ import * as iam from "@aws-cdk/aws-iam";
 import * as cognito from "@aws-cdk/aws-cognito";
 
 export default class CognitoAuthRole extends cdk.Construct {
+  // Public reference to the IAM role
   role;
 
   constructor(scope, id, props) {

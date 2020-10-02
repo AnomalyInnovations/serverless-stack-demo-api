@@ -3,6 +3,7 @@ import * as s3 from "@aws-cdk/aws-s3";
 import * as sst from "@serverless-stack/resources";
 
 export default class S3Stack extends sst.Stack {
+  // Public reference to the S3 bucket
   bucket;
 
   constructor(scope, id, props) {
