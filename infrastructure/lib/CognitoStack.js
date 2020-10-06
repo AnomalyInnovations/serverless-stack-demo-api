@@ -21,7 +21,6 @@ export default class CognitoStack extends sst.Stack {
     const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
       userPool,
       generateSecret: false, // Don't need to generate secret for web app running on browsers
-      authFlows: { adminUserPassword: false },
     });
 
     const identityPool = new cognito.CfnIdentityPool(this, "IdentityPool", {
