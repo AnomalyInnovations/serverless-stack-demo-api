@@ -38,7 +38,7 @@ export default class CognitoStack extends sst.Stack {
     });
 
     authenticatedRole.role.addToPolicy(
-      // IAM policy for allowing users to upload to their own folder in the S3 bucket
+      // IAM policy granting users permission to a specific folder in the S3 bucket
       new iam.PolicyStatement({
         actions: ["s3:*"],
         effect: iam.Effect.ALLOW,
