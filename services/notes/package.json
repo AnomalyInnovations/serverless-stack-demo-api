@@ -1,7 +1,7 @@
 {
-  "name": "serverless-nodejs-starter",
-  "version": "1.1.3",
-  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
+  "name": "notes-api",
+  "version": "2.2.0",
+  "description": "A Node.js starter for Serverless Framework with ES6 and TypeScript support",
   "main": "handler.js",
   "scripts": {
     "test": "serverless-bundle test"
@@ -13,13 +13,14 @@
     "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
   },
   "devDependencies": {
-    "aws-sdk": "^2.655.0",
-    "serverless-bundle": "^3.1.0",
-    "serverless-dotenv-plugin": "^2.3.2",
-    "serverless-offline": "^6.1.4"
+    "aws-sdk": "^2.768.0",
+    "jest": "^26.5.2",
+    "serverless-bundle": "2.0.0",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^5.3.3"
   },
   "dependencies": {
-    "stripe": "^8.39.0",
+    "stripe": "^8.107.0",
     "uuid": "^7.0.3"
   }
 }
