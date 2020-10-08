@@ -21,3 +21,4 @@ export const main = handler(async (event, context) => {
   // Return the retrieved item
   return result.Item;
 });
+
