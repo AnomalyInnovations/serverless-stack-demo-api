@@ -26,21 +26,19 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:DescribeTable
-        - dynamodb:Query
         - dynamodb:Scan
+        - dynamodb:Query
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
       Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
   # - path: url path is /notes
   # - method: POST request
-  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
-  #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
     handler: create.main
