@@ -79,6 +79,6 @@ The API service refers to an `.env` file for secret environment variables that a
 
 ---
 
-This repo is maintained by [Anomaly Innovations](https://anoma.ly); makers of [Seed](https://seed.run) and [Serverless Stack](https://serverless-stack.com).
+This repo is maintained by [Serverless Stack](https://serverless-stack.com).
 
-[email]: mailto:contact@anoma.ly
+[email]: mailto:hello@serverless-stack.com
