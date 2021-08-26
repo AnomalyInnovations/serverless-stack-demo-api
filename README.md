@@ -4,14 +4,6 @@
 
 This repo is for the serverless backend API that we build over the course of the tutorial. You can find the repo for the frontend React app [here](https://github.com/AnomalyInnovations/serverless-stack-demo-client). And the repo for the tutorial [here](https://github.com/AnomalyInnovations/serverless-stack-com).
 
-#### Steps
-
-To support the different chapters and steps of the tutorial; we use branches to represent the project codebase at the various points. Here is an index of the various chapters and branches in order.
-
-- [Initialize the Backend Repo](../../tree/initialize-the-backend-repo)
-- [Handle API Gateway CORS Errors](../../tree/handle-api-gateway-cors-errors)
-- [Deploy Your Serverless Infrastructure](../../tree/deploy-your-serverless-infrastructure)
-
 #### Usage
 
 To use this repo locally you need to have the [Serverless framework](https://serverless.com) installed.
@@ -53,7 +45,7 @@ Finally, run this to deploy to your AWS account.
 $ serverless deploy
 ```
 
-This project refers to an `.env` file for secret environment variables that are not checking in to the repo. Make sure to create one before dpeloying - https://serverless-stack.com/chapters/load-secrets-from-env.html.
+This project refers to an `.env` file for secret environment variables that are not checking in to the repo. Make sure to create one before deploying - https://serverless-stack.com/chapters/load-secrets-from-env.html.
 
 ---
 
