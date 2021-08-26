@@ -2,7 +2,7 @@
 
 [Serverless Stack](http://serverless-stack.com) is a free comprehensive guide to creating full-stack serverless applications. We create a [note taking app](http://demo2.serverless-stack.com) from scratch.
 
-This repo is for the serverless backend API that we build over the course of the tutorial. You can find the repo for the frontend React app [here](https://github.com/AnomalyInnovations/serverless-stack-demo-client). And the repo for the tutorial [here](https://github.com/AnomalyInnovations/serverless-stack-com).
+The main part of the guide uses [SST](https://github.com/serverless-stack/serverless-stack). We also have an alternative version that uses Serverless Framework. This repo is the source for the Serverless Framework version of the backend. There's a [frontend React client that connects to this as well](https://github.com/AnomalyInnovations/serverless-stack-demo-client).
 
 #### Usage
 
