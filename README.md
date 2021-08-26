@@ -1,4 +1,4 @@
-# Serverless Stack Demo API
+# Serverless Stack Demo API [![Seed Status](https://api.seed.run/serverless-stack/serverless-stack-demo-api/stages/prod/build_badge)](https://console.seed.run/serverless-stack/serverless-stack-demo-api)
 
 [Serverless Stack](http://serverless-stack.com) is a free comprehensive guide to creating full-stack serverless applications. We create a [note taking app](http://demo2.serverless-stack.com) from scratch.
 
